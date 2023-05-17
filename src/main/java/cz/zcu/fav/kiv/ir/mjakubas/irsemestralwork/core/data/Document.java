@@ -3,7 +3,7 @@ package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data;
 import java.net.URL;
 
 /**
- * Represents loaded unprocessed document.
+ * Record represents a loaded unprocessed document.
  *
  * @param id    Internal id of a document.
  * @param url   Document origin.
