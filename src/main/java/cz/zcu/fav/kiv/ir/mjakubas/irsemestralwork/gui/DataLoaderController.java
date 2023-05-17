@@ -43,8 +43,8 @@ public class DataLoaderController {
             return;
         }
         /* load data from directory */
-        List<Document> documentsData = loadDocumentsData(dataDirectoryPath);
-        if (documentsData == null) {
+        List<Document> documents = loadDocumentsData(dataDirectoryPath);
+        if (documents == null) {
             showDataExceptionAlert();
             return;
         }
@@ -54,8 +54,8 @@ public class DataLoaderController {
         Parent root = fxmlLoader.load();
         SearcherController controller = fxmlLoader.getController();
 
-        /* */
-        controller.indexController = new IndexController(null, null);
+        /* create index controller */
+        controller.indexController = IndexController.createController(documents);
 
         /* javafx stuff */
         Scene newIndexScene = new Scene(root);
