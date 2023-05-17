@@ -39,8 +39,8 @@
                     </rowConstraints>
                     <children>
                         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Položit dotaz"
-                                GridPane.columnIndex="2"/>
-                        <TextField GridPane.columnIndex="1"/>
+                                GridPane.columnIndex="2" onAction="#onSearchClick"/>
+                        <TextField GridPane.columnIndex="1" fx:id="queryField"/>
                         <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Dotaz:"/>
                     </children>
                 </GridPane>
