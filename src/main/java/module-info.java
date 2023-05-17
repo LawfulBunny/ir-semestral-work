@@ -10,5 +10,6 @@ module cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork {
     opens cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.io to com.google.gson;
     exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork;
     exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui;
+    exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data;
     opens cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui to com.google.gson, javafx.fxml;
 }

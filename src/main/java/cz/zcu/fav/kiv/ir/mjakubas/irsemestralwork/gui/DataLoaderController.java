@@ -2,6 +2,7 @@ package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui;
 
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.SearcherApplication;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.Document;
+import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueriedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.io.DocumentLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,20 +49,19 @@ public class DataLoaderController {
             return;
         }
 
+        /* load template */
         FXMLLoader fxmlLoader = new FXMLLoader(SearcherApplication.class.getResource("searcher-view.fxml"));
         Parent root = fxmlLoader.load();
         SearcherController controller = fxmlLoader.getController();
-        for (int i = 0; i < 10; i++) {
-            controller.resultList.getItems().add("asdads");
-        }
 
+        /* */
+
+        /* javafx stuff */
         Scene newIndexScene = new Scene(root);
-
         newIndexStage.setScene(newIndexScene);
         newIndexStage.setTitle(GUIText.STAGE_TITLE);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.hide();
-
         newIndexStage.show();
     }
 
