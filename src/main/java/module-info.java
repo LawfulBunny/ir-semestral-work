@@ -5,6 +5,7 @@ module cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork {
     requires org.apache.logging.log4j.core;
     requires com.google.gson;
     requires com.google.common;
+    requires static lombok;
 
     opens cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork to javafx.fxml, com.google.gson;
     opens cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data to com.google.gson;

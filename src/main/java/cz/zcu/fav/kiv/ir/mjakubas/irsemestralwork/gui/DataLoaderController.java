@@ -55,6 +55,7 @@ public class DataLoaderController {
         SearcherController controller = fxmlLoader.getController();
 
         /* */
+        controller.indexController = new IndexController(null, null);
 
         /* javafx stuff */
         Scene newIndexScene = new Scene(root);

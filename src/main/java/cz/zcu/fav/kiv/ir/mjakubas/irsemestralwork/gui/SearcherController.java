@@ -17,6 +17,7 @@ import java.io.IOException;
 public class SearcherController {
 
     private static final Logger LOGGER = LogManager.getLogger(SearcherController.class);
+    public IndexController indexController;
 
     @FXML
     private ListView<QueriedDocument> resultList;
