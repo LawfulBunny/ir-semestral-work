@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed8e5eea-399a-4ae7-b517-f1ec718d28b5" name="Changes" comment="Eh...">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/HashIndex.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/Index.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/IndexManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/IndexController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/IndexedDocument.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/DataLoaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/DataLoaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/SearcherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/SearcherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/HashIndex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/HashIndex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/Index.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/Index.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/IndexController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +108,7 @@
       <workItem from="1684331404292" duration="1984000" />
       <workItem from="1684333397637" duration="13126000" />
       <workItem from="1684347977053" duration="1593000" />
-      <workItem from="1684349579128" duration="773000" />
+      <workItem from="1684349579128" duration="1398000" />
     </task>
     <task id="LOCAL-00001" summary="Eh...">
       <created>1684344527988</created>
@@ -142,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684348748242</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Eh...">
+      <created>1684350378807</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1684350378807</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
