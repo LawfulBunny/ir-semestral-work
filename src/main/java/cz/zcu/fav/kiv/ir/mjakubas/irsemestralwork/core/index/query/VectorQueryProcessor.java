@@ -13,7 +13,7 @@ public class VectorQueryProcessor extends QueryProcessor {
     }
 
     @Override
-    protected List<Long> getQueryRelatedDocuments(Set<String> queryWords) {
+    protected List<Long> getQueryRelatedDocuments(List<String> queryWords) {
         Set<Long> ids = new HashSet<>();
         ImmutableMap<String, List<IndexedDocument>> invertedIndex = index.exposeInvertedIndex();
         for (String term : queryWords) {

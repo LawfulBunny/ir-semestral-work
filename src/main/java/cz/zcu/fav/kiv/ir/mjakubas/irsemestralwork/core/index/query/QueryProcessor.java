@@ -33,7 +33,7 @@ public abstract class QueryProcessor {
     public QueryResult performQuery(String text, int nHit, DocumentProcessor documentProcessor) {
         LOGGER.trace("Performing query for '{}'. Max results: {}", text, nHit);
         /* get all unique query terms */
-        Set<String> queryWords = getQueryTerms(text, documentProcessor);
+        List<String> queryWords = getQueryTerms(text, documentProcessor);
         LOGGER.trace("Query words '{}'", queryWords);
         /* create query vector */
         Map<String, Double> queryVector = createQueryVector(queryWords);
@@ -48,13 +48,13 @@ public abstract class QueryProcessor {
         return new QueryResult(ImmutableList.copyOf(returnedDocuments));
     }
 
-    protected Set<String> getQueryTerms(String text, DocumentProcessor documentProcessor) {
+    protected List<String> getQueryTerms(String text, DocumentProcessor documentProcessor) {
         Document queryAsDocument = new Document(-1, null, text, text);
 
-        return documentProcessor.processDocument(queryAsDocument).processedFields().get(0).wordFrequencies().keySet();
+        return documentProcessor.processDocument(queryAsDocument).processedFields().get(0).wordFrequencies().keySet().stream().toList();
     }
 
-    protected Map<String, Double> createQueryVector(Set<String> queryWords) {
+    protected Map<String, Double> createQueryVector(List<String> queryWords) {
         double[] vector = new double[index.exposeInvertedIndex().size()];
         int i = 0;
         for (String term : queryWords) {
@@ -69,7 +69,7 @@ public abstract class QueryProcessor {
         return result;
     }
 
-    protected List<QueriedDocument> performSearch(Set<String> queryWords, Map<String, Double> queryVector, List<Long> documentIds) {
+    protected List<QueriedDocument> performSearch(List<String> queryWords, Map<String, Double> queryVector, List<Long> documentIds) {
         // calculate rank for each document
         List<QueriedDocument> queriedDocuments = new ArrayList<>();
         for (long id : documentIds) {
@@ -86,5 +86,5 @@ public abstract class QueryProcessor {
         return queriedDocuments;
     }
 
-    protected abstract List<Long> getQueryRelatedDocuments(Set<String> queryWords);
+    protected abstract List<Long> getQueryRelatedDocuments(List<String> queryWords);
 }
