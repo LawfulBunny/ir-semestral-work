@@ -7,6 +7,7 @@ import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueryResult;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.Index;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.BasicPreprocessing;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.DocumentProcessor;
+import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.PreprocessingSolution;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.stemmer.CzechStemmerAggressive;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.tokenizer.AdvancedTokenizer;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.utils.Vector;
@@ -33,10 +34,10 @@ public abstract class QueryProcessor {
      * @param nHit Interested in n results.
      * @return Queried documents up to nHit results.
      */
-    public QueryResult performQuery(String text, int nHit) {
+    public QueryResult performQuery(String text, int nHit, PreprocessingSolution preprocessingSolution) {
         LOGGER.trace("Performing query for '{}'. Max results: {}", text, nHit);
         /* get all unique query terms */
-        Set<String> queryWords = getQueryTerms(text);
+        Set<String> queryWords = getQueryTerms(text, preprocessingSolution);
         LOGGER.trace("Query words '{}'", queryWords);
         /* create query vector */
         Map<String, Double> queryVector = createQueryVector(queryWords);
@@ -51,10 +52,10 @@ public abstract class QueryProcessor {
         return new QueryResult(ImmutableList.copyOf(returnedDocuments));
     }
 
-    protected Set<String> getQueryTerms(String text) {
+    protected Set<String> getQueryTerms(String text, PreprocessingSolution preprocessingSolution) {
         Document queryAsDocument = new Document(-1, null, null, text);
-        DocumentProcessor documentProcessor = new DocumentProcessor(new BasicPreprocessing(new CzechStemmerAggressive(), new AdvancedTokenizer()));
 
+        DocumentProcessor documentProcessor = preprocessingSolution.documentProcessor();
         return documentProcessor.processDocument(queryAsDocument).processedFields().get(1).wordFrequencies().keySet();
     }
 

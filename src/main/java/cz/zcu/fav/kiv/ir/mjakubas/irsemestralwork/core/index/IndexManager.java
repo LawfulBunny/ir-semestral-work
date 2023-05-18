@@ -30,7 +30,7 @@ public class IndexManager {
         index.indexDocuments(processed, ofField);
     }
 
-    public QueryResult searchIndex(QueryProcessor queryProcessor) {
-        return null;
+    public QueryResult searchIndex(String text, int nHit, QueryProcessor queryProcessor) {
+        return queryProcessor.performQuery(text, nHit, preprocessingSolution);
     }
 }
