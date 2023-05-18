@@ -49,9 +49,9 @@ public abstract class QueryProcessor {
     }
 
     protected Set<String> getQueryTerms(String text, DocumentProcessor documentProcessor) {
-        Document queryAsDocument = new Document(-1, null, null, text);
+        Document queryAsDocument = new Document(-1, null, text, text);
 
-        return documentProcessor.processDocument(queryAsDocument).processedFields().get(1).wordFrequencies().keySet();
+        return documentProcessor.processDocument(queryAsDocument).processedFields().get(0).wordFrequencies().keySet();
     }
 
     protected Map<String, Double> createQueryVector(Set<String> queryWords) {

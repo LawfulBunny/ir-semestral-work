@@ -69,7 +69,7 @@ public class HashIndex implements Index {
 
     @Override
     public ImmutableMap<String, List<IndexedDocument>> exposeInvertedIndex() {
-        return null;
+        return ImmutableMap.copyOf(this.invertedIndex);
     }
 
 
