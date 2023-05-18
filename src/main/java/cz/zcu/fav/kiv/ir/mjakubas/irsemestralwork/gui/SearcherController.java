@@ -106,6 +106,9 @@ public class SearcherController {
             queryProcessor = queryProcessorTitle;
         }
         QueryResult result = queryProcessor.performQuery(query, Integer.parseInt(hitField.getText()), indexStorage.textManager().getDocumentProcessor());
+        result.result().forEach(queriedDocument -> {
+            resultList.getItems().add(queriedDocument);
+        });
     }
 
     @FXML
