@@ -6,9 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lombok.Getter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,9 +24,16 @@ public class SearcherController {
 
     @FXML
     private ListView<QueriedDocument> resultList;
-
+    @FXML
+    public TextField hitField;
     @FXML
     private TextField queryField;
+    @FXML
+    public Label queryStats;
+    @FXML
+    public Label documentCount;
+    @FXML
+    public ComboBox<String> searchOfField;
 
     @FXML
     private void onNewIndexClick(ActionEvent event) throws IOException {
@@ -42,5 +52,17 @@ public class SearcherController {
     private void onSearchClick(ActionEvent event) {
         String query = queryField.getText();
         LOGGER.info("Query accepted for '{}'", query);
+    }
+
+    public void onVectorModelClick(ActionEvent event) {
+    }
+
+    public void onBooleanModelClick(ActionEvent event) {
+    }
+
+    public void onMixModelClick(ActionEvent event) {
+    }
+
+    public void onHelpClick(ActionEvent event) {
     }
 }
