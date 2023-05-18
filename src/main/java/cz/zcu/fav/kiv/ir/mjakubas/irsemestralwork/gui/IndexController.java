@@ -10,8 +10,8 @@ import java.util.List;
 public class IndexController {
 
     public static IndexController createController(List<Document> documents) {
-        IndexManager forTitle = new IndexManager();
-        IndexManager forText = new IndexManager();
+        IndexManager forTitle = null;
+        IndexManager forText = null;
 
         return new IndexController(forTitle, forText);
     }

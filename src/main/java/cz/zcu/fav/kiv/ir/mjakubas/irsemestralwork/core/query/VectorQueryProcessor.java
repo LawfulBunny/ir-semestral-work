@@ -6,9 +6,9 @@ import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.Index;
 import java.util.List;
 import java.util.Set;
 
-public class VectorQueryProcessor<Entry> extends QueryProcessor<Entry> {
+public class VectorQueryProcessor extends QueryProcessor {
 
-    public VectorQueryProcessor(Index<Entry> index) {
+    public VectorQueryProcessor(Index index) {
         super(index);
     }
 

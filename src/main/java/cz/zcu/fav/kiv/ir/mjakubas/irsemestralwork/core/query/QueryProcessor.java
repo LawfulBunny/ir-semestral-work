@@ -19,15 +19,13 @@ import java.util.*;
 
 /**
  * Used to perform query over a given index.
- *
- * @param <Entry> Index entry.
  */
 @AllArgsConstructor
-public abstract class QueryProcessor<Entry> {
+public abstract class QueryProcessor {
 
     private static final Logger LOGGER = LogManager.getLogger(QueryProcessor.class);
 
-    private final Index<Entry> index;
+    private final Index index;
 
     /**
      * Performs query of text over objects index. Returns up to nHit results.
