@@ -15,8 +15,12 @@ module cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork {
 
     exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork;
     exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui;
-    exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data;
     exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui.storage;
+    exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data;
     exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index;
     exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document;
+    exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.io;
+    exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index;
+    exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query;
+    exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.utils;
 }

@@ -21,7 +21,7 @@ public class MixedQueryProcessor extends QueryProcessor {
 
     @Override
     protected List<Long> getQueryRelatedDocuments(List<String> queryWords) {
-        return null;
+        return processExpression(tokens.iterator(), queryWords.iterator());
     }
 
     @Override
