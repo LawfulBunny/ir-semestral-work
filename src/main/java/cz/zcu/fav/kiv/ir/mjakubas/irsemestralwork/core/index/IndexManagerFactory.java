@@ -1,4 +1,4 @@
 package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index;
 
-public class IndexedDocument {
+public class IndexManagerFactory {
 }

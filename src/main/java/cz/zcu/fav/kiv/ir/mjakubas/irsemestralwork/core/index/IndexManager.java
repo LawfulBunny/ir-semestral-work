@@ -4,6 +4,8 @@ import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.Document;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.ProcessedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueryResult;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.PreprocessingSolution;
+import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.Index;
+import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.InvalidFieldIndex;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.QueryProcessor;
 import lombok.AllArgsConstructor;
 

@@ -1,4 +1,4 @@
-package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index;
+package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
