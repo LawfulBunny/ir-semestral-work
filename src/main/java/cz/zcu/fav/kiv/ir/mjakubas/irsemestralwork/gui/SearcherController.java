@@ -3,6 +3,7 @@ package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.SearcherApplication;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.Document;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueriedDocument;
+import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueryResult;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.QueryProcessor;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.VectorQueryProcessor;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui.io.DataLoader;
@@ -100,6 +101,11 @@ public class SearcherController {
     private void onSearchClick(ActionEvent event) {
         String query = queryField.getText();
         LOGGER.info("Query accepted for '{}'", query);
+        QueryProcessor queryProcessor = queryProcessorText;
+        if (searchOfField.getValue().equals("Title")) {
+            queryProcessor = queryProcessorTitle;
+        }
+        QueryResult result = queryProcessor.performQuery(query, Integer.parseInt(hitField.getText()), indexStorage.textManager().getDocumentProcessor());
     }
 
     @FXML
@@ -134,7 +140,6 @@ public class SearcherController {
             stage.setTitle(GUIText.STAGE_TITLE);
             stage.setScene(scene);
             stage.show();
-            LOGGER.info("sadjoasdjpf");
         } catch (IOException ignored) {
         }
     }

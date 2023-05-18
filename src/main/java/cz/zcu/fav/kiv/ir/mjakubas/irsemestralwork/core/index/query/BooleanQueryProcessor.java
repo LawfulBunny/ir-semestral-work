@@ -11,7 +11,7 @@ public class BooleanQueryProcessor extends QueryProcessor {
     }
 
     @Override
-    protected List<Integer> getQueryRelatedDocuments(Set<String> queryWords) {
+    protected List<Long> getQueryRelatedDocuments(Set<String> queryWords) {
         return null;
     }
 }

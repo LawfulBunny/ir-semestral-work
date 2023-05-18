@@ -1,6 +1,5 @@
 package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.ProcessedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.ProcessedField;
@@ -69,7 +68,7 @@ public class HashIndex implements Index {
     }
 
     @Override
-    public ImmutableMap<String, ImmutableList<IndexedDocument>> exposeInvertedIndex() {
+    public ImmutableMap<String, List<IndexedDocument>> exposeInvertedIndex() {
         return null;
     }
 

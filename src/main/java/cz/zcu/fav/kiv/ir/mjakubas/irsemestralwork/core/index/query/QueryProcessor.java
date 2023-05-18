@@ -21,7 +21,7 @@ public abstract class QueryProcessor {
 
     private static final Logger LOGGER = LogManager.getLogger(QueryProcessor.class);
 
-    private final Index index;
+    protected final Index index;
 
     /**
      * Performs query of text over objects index. Returns up to nHit results.
@@ -39,7 +39,7 @@ public abstract class QueryProcessor {
         Map<String, Double> queryVector = createQueryVector(queryWords);
         LOGGER.trace("Query vector '{}'", queryVector);
         /* get query-related documents */
-        List<Integer> documentIds = getQueryRelatedDocuments(queryWords);
+        List<Long> documentIds = getQueryRelatedDocuments(queryWords);
         LOGGER.trace("Document ids '{}'", documentIds);
         /* perform search based on query */
         List<QueriedDocument> returnedDocuments = performSearch(queryWords, queryVector, documentIds);
@@ -69,10 +69,10 @@ public abstract class QueryProcessor {
         return result;
     }
 
-    protected List<QueriedDocument> performSearch(Set<String> queryWords, Map<String, Double> queryVector, List<Integer> documentIds) {
+    protected List<QueriedDocument> performSearch(Set<String> queryWords, Map<String, Double> queryVector, List<Long> documentIds) {
         // calculate rank for each document
         List<QueriedDocument> queriedDocuments = new ArrayList<>();
-        for (Integer id : documentIds) {
+        for (long id : documentIds) {
             double rank = 0;
             // cycle through each query term
             for (String term : queryWords) {
@@ -80,11 +80,11 @@ public abstract class QueryProcessor {
                 double qv = queryVector.get(term);
                 rank += dv * qv;
             }
-            queriedDocuments.add(new QueriedDocument(-1, rank, null));
+            queriedDocuments.add(new QueriedDocument(-1, rank, index.exposeDocuments().get(id).document()));
         }
 
         return queriedDocuments;
     }
 
-    protected abstract List<Integer> getQueryRelatedDocuments(Set<String> queryWords);
+    protected abstract List<Long> getQueryRelatedDocuments(Set<String> queryWords);
 }

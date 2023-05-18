@@ -1,6 +1,5 @@
 package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.ProcessedDocument;
 
@@ -27,7 +26,7 @@ public interface Index {
      *
      * @return Inverted index.
      */
-    public ImmutableMap<String, ImmutableList<IndexedDocument>> exposeInvertedIndex();
+    public ImmutableMap<String, List<IndexedDocument>> exposeInvertedIndex();
 
     /**
      * Returns indexed documents.
