@@ -52,6 +52,7 @@ public class DataLoaderController {
 
         /* create index controller */
         controller.indexStorage = PreparedIndexStorage.createCzechIndexController();
+        controller.insertNewData(documents);
 
         /* javafx stuff */
         Scene newIndexScene = new Scene(root);

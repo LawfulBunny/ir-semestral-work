@@ -35,4 +35,8 @@ public class IndexManager {
     public QueryResult searchIndex(String text, int nHit, QueryProcessor queryProcessor) {
         return queryProcessor.performQuery(text, nHit, documentProcessor);
     }
+
+    public int getIndexedDocumentCount() {
+        return index.exposeDocuments().size();
+    }
 }
