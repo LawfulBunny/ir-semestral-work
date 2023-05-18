@@ -7,9 +7,7 @@
     <list default="true" id="ed8e5eea-399a-4ae7-b517-f1ec718d28b5" name="Changes" comment="Eh...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/query/BooleanQueryProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/query/BooleanQueryProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/query/MixedQueryProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/query/MixedQueryProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/query/QueryProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/query/QueryProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/query/VectorQueryProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/query/VectorQueryProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/SearcherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/SearcherController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +19,8 @@
       <list>
         <option value="Interface" />
         <option value="Record" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -77,7 +75,20 @@
       <recent name="cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.SearcherApplication">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.Main" />
+      <module name="IRSemestralWork" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SearcherApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.SearcherApplication" />
       <module name="IRSemestralWork" />
@@ -92,9 +103,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.SearcherApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.SearcherApplication" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -109,7 +125,7 @@
       <workItem from="1684331404292" duration="1984000" />
       <workItem from="1684333397637" duration="13126000" />
       <workItem from="1684347977053" duration="1593000" />
-      <workItem from="1684349579128" duration="21402000" />
+      <workItem from="1684349579128" duration="23763000" />
     </task>
     <task id="LOCAL-00001" summary="Eh...">
       <created>1684344527988</created>
@@ -279,7 +295,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684434890908</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Eh...">
+      <created>1684435468928</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1684435468928</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,16 +311,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Eh..." />
     <option name="LAST_COMMIT_MESSAGE" value="Eh..." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/SearcherController.java</url>
-          <line>107</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

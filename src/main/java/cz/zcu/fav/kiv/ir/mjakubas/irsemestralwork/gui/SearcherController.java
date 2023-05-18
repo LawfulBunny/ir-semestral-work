@@ -4,6 +4,8 @@ import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.SearcherApplication;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.Document;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueriedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueryResult;
+import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.BooleanQueryProcessor;
+import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.MixedQueryProcessor;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.QueryProcessor;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.VectorQueryProcessor;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui.io.DataLoader;
@@ -120,15 +122,15 @@ public class SearcherController {
 
     @FXML
     public void onBooleanModelClick(ActionEvent event) {
-        queryProcessorTitle = new VectorQueryProcessor(indexStorage.titleManager().getIndex());
-        queryProcessorText = new VectorQueryProcessor(indexStorage.textManager().getIndex());
+        queryProcessorTitle = new BooleanQueryProcessor(indexStorage.titleManager().getIndex());
+        queryProcessorText = new BooleanQueryProcessor(indexStorage.textManager().getIndex());
         showQueryModelChangeAlert();
     }
 
     @FXML
     public void onMixModelClick(ActionEvent event) {
-        queryProcessorTitle = new VectorQueryProcessor(indexStorage.titleManager().getIndex());
-        queryProcessorText = new VectorQueryProcessor(indexStorage.textManager().getIndex());
+        queryProcessorTitle = new MixedQueryProcessor(indexStorage.titleManager().getIndex());
+        queryProcessorText = new MixedQueryProcessor(indexStorage.textManager().getIndex());
         showQueryModelChangeAlert();
     }
 
