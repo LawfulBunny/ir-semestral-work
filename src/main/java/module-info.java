@@ -14,4 +14,6 @@ module cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork {
     exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui;
     exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data;
     opens cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui to com.google.gson, javafx.fxml;
+    exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui.storage;
+    opens cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui.storage to com.google.gson, javafx.fxml;
 }

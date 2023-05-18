@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed8e5eea-399a-4ae7-b517-f1ec718d28b5" name="Changes" comment="Eh..." />
+    <list default="true" id="ed8e5eea-399a-4ae7-b517-f1ec718d28b5" name="Changes" comment="Eh...">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/DataLoaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/DataLoaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/IndexStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/storage/IndexStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/PreparedIndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/storage/PreparedIndexStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/SearcherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/SearcherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +85,7 @@
       <option name="PROGRAM_PARAMETERS" value="&quot;--add-opens&quot; &quot;java.base/jdk.internal.loader=ALL-UNNAMED&quot; &quot;--add-opens&quot; &quot;java.base/java.lang.reflect=ALL-UNNAMED&quot; &quot;--add-exports&quot; &quot;javafx.base/com.sun.javafx.collections=ALL-UNNAMED&quot; &quot;--add-exports&quot; &quot;javafx.graphics/com.sun.javafx.scene=ALL-UNNAMED&quot; &quot;--add-exports&quot; &quot;javafx.base/com.sun.javafx.event=ALL-UNNAMED&quot; &quot;--add-exports&quot; &quot;javafx.base/com.sun.javafx.collections=ALL-UNNAMED&quot;" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui.*" />
+          <option name="PATTERN" value="cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui.storage.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -103,7 +110,7 @@
       <workItem from="1684331404292" duration="1984000" />
       <workItem from="1684333397637" duration="13126000" />
       <workItem from="1684347977053" duration="1593000" />
-      <workItem from="1684349579128" duration="13523000" />
+      <workItem from="1684349579128" duration="14508000" />
     </task>
     <task id="LOCAL-00001" summary="Eh...">
       <created>1684344527988</created>
@@ -210,7 +217,28 @@
       <option name="project" value="LOCAL" />
       <updated>1684424351443</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Eh...">
+      <created>1684427248211</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1684427248211</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Eh...">
+      <created>1684427459714</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1684427459714</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Eh...">
+      <created>1684428114063</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1684428114063</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

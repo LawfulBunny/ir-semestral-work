@@ -2,8 +2,8 @@ package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui;
 
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.SearcherApplication;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.Document;
-import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueriedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.io.DocumentLoader;
+import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui.storage.PreparedIndexStorage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,12 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -55,7 +51,7 @@ public class DataLoaderController {
         SearcherController controller = fxmlLoader.getController();
 
         /* create index controller */
-        controller.indexController = IndexController.createController(documents);
+        controller.indexStorage = PreparedIndexStorage.createCzechIndexController();
 
         /* javafx stuff */
         Scene newIndexScene = new Scene(root);

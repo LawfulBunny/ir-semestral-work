@@ -23,6 +23,7 @@
                     <menus>
                         <Menu mnemonicParsing="false" text="Aplikace">
                             <items>
+                                <MenuItem mnemonicParsing="false" onAction="#onNewDataClick" text="Přidat data"/>
                                 <MenuItem mnemonicParsing="false" onAction="#onNewIndexClick" text="Nový index"/>
                             </items>
                         </Menu>
