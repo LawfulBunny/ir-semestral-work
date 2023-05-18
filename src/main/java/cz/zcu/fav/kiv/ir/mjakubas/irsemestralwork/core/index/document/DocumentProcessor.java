@@ -15,7 +15,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class DocumentProcessor {
 
-    private final BasicPreprocessing basicPreprocessing;
+    private final Preprocessing basicPreprocessing;
 
     public List<ProcessedDocument> processDocuments(List<Document> documents) {
         List<ProcessedDocument> processedDocuments = new ArrayList<>();

@@ -4,9 +4,8 @@ import com.google.common.collect.ImmutableList;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.Document;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueriedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueryResult;
-import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.Index;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.DocumentProcessor;
-import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.PreprocessingSolution;
+import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.Index;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.utils.Vector;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.LogManager;
@@ -31,10 +30,10 @@ public abstract class QueryProcessor {
      * @param nHit Interested in n results.
      * @return Queried documents up to nHit results.
      */
-    public QueryResult performQuery(String text, int nHit, PreprocessingSolution preprocessingSolution) {
+    public QueryResult performQuery(String text, int nHit, DocumentProcessor documentProcessor) {
         LOGGER.trace("Performing query for '{}'. Max results: {}", text, nHit);
         /* get all unique query terms */
-        Set<String> queryWords = getQueryTerms(text, preprocessingSolution);
+        Set<String> queryWords = getQueryTerms(text, documentProcessor);
         LOGGER.trace("Query words '{}'", queryWords);
         /* create query vector */
         Map<String, Double> queryVector = createQueryVector(queryWords);
@@ -49,10 +48,9 @@ public abstract class QueryProcessor {
         return new QueryResult(ImmutableList.copyOf(returnedDocuments));
     }
 
-    protected Set<String> getQueryTerms(String text, PreprocessingSolution preprocessingSolution) {
+    protected Set<String> getQueryTerms(String text, DocumentProcessor documentProcessor) {
         Document queryAsDocument = new Document(-1, null, null, text);
 
-        DocumentProcessor documentProcessor = preprocessingSolution.documentProcessor();
         return documentProcessor.processDocument(queryAsDocument).processedFields().get(1).wordFrequencies().keySet();
     }
 

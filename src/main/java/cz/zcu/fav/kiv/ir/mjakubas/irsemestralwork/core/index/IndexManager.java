@@ -3,7 +3,7 @@ package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.Document;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.ProcessedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueryResult;
-import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.PreprocessingSolution;
+import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.DocumentProcessor;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.Index;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.InvalidFieldIndex;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.QueryProcessor;
@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class IndexManager {
 
-    private final PreprocessingSolution preprocessingSolution;
+    private final DocumentProcessor documentProcessor;
     private final Index index;
 
     /**
@@ -28,11 +28,11 @@ public class IndexManager {
      * @throws InvalidFieldIndex If field doesn't exist.
      */
     public void indexDocuments(List<Document> documents, int ofField) throws InvalidFieldIndex {
-        List<ProcessedDocument> processed = preprocessingSolution.documentProcessor().processDocuments(documents);
+        List<ProcessedDocument> processed = documentProcessor.processDocuments(documents);
         index.indexDocuments(processed, ofField);
     }
 
     public QueryResult searchIndex(String text, int nHit, QueryProcessor queryProcessor) {
-        return queryProcessor.performQuery(text, nHit, preprocessingSolution);
+        return queryProcessor.performQuery(text, nHit, documentProcessor);
     }
 }
