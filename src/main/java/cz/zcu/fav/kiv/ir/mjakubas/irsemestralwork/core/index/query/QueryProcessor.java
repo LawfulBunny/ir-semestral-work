@@ -1,8 +1,7 @@
-package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.query;
+package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query;
 
 import com.google.common.collect.ImmutableList;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.Document;
-import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.ProcessedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueriedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueryResult;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.Index;
@@ -10,7 +9,7 @@ import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.BasicPrepr
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.DocumentProcessor;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.stemmer.CzechStemmerAggressive;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.tokenizer.AdvancedTokenizer;
-import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.query.utils.Vector;
+import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.utils.Vector;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,4 +1,4 @@
-package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.query.utils;
+package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.utils;
 
 public class Vector {
 

@@ -1,6 +1,5 @@
-package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.query;
+package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query;
 
-import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.HashIndex;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.Index;
 
 import java.util.List;
