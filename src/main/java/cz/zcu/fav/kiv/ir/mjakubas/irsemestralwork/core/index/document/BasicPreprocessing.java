@@ -7,14 +7,18 @@ import lombok.AllArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Defines basic text preprocessing. Preprocessing consists of stemmer and tokenizer.
+ */
 @AllArgsConstructor
-public class BasicPreprocessing extends Preprocessing {
+public class BasicPreprocessing implements Preprocessing {
 
     private final Stemmer stemmer;
     private final Tokenizer tokenizer;
 
-    public List<String> process(String input) {
-        String processedInput = input.toLowerCase();
+    @Override
+    public List<String> preprocess(String text) {
+        String processedInput = text.toLowerCase();
 
         List<String> processedTokens = new ArrayList<>();
 

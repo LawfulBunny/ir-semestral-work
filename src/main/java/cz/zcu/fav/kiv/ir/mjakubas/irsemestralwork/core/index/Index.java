@@ -1,5 +1,6 @@
 package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.ProcessedDocument;
 
@@ -10,9 +11,8 @@ import java.util.List;
  * as well as retrieval of its indexed data structure.
  * Indexed data can be changed only through indexation methods.
  *
- * @param <Entry> Index entry.
  */
-public interface Index<Entry> {
+public interface Index {
 
     /**
      * Indexes new documents into the index.
@@ -27,7 +27,7 @@ public interface Index<Entry> {
      *
      * @return Inverted index.
      */
-    public ImmutableMap<String, Entry> exposeInvertedIndex();
+    public ImmutableMap<String, ImmutableList<IndexedDocument>> exposeInvertedIndex();
 
     /**
      * Returns indexed documents.

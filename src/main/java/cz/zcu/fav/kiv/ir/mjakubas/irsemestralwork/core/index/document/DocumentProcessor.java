@@ -28,8 +28,8 @@ public class DocumentProcessor {
     }
 
     public ProcessedDocument processDocument(Document document) {
-        List<String> processedTitle = basicPreprocessing.process(document.title());
-        List<String> processedText = basicPreprocessing.process(document.text());
+        List<String> processedTitle = basicPreprocessing.preprocess(document.title());
+        List<String> processedText = basicPreprocessing.preprocess(document.text());
 
         Map<String, Integer> titleWordFrequencies = createWordFrequencies(processedTitle);
         Map<String, Integer> textWordFrequencies = createWordFrequencies(processedText);
