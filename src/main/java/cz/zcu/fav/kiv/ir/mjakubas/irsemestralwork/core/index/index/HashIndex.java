@@ -16,10 +16,7 @@ public class HashIndex implements Index {
 
     private static final Logger LOGGER = LogManager.getLogger(HashIndex.class);
 
-    protected record HashEntry(List<IndexedDocument> indexedDocuments) {
-    }
-
-    private final Map<String, HashEntry> invertedIndex = new HashMap<>();
+    private final Map<String, List<IndexedDocument>> invertedIndex = new HashMap<>();
 
     private final Map<Long, ProcessedDocument> indexedDocuments = new HashMap<>();
 
@@ -45,8 +42,8 @@ public class HashIndex implements Index {
                         "Skipping populating inverted index for said document.", document.document().id(), ofField));
             } else {
                 for (String word : field.words()) {
-                    this.invertedIndex.putIfAbsent(word, new HashEntry(new ArrayList<>()));
-                    this.invertedIndex.get(word).indexedDocuments().add(new IndexedDocument(0, document));
+                    this.invertedIndex.putIfAbsent(word, new ArrayList<>());
+                    this.invertedIndex.get(word).add(new IndexedDocument(0, document));
                 }
             }
         });
@@ -56,10 +53,10 @@ public class HashIndex implements Index {
         int documentsCount = indexedDocuments.size();
         this.invertedIndex.forEach((word, hashEntry) -> {
             /* sort the list */
-            hashEntry.indexedDocuments.sort(Comparator.comparingLong(of -> of.getProcessedDocument().document().id()));
+            hashEntry.sort(Comparator.comparingLong(of -> of.getProcessedDocument().document().id()));
             /* calculate tf-idf */
-            double idf = Math.log((double) documentsCount / hashEntry.indexedDocuments.size());
-            hashEntry.indexedDocuments.forEach(document -> {
+            double idf = Math.log((double) documentsCount / hashEntry.size());
+            hashEntry.forEach(document -> {
                 //noinspection DataFlowIssue : cant happen due to initial check
                 int tf = document.getProcessedDocument().processedFields().get(ofField).wordFrequencies()
                         .getOrDefault(word, 0);
@@ -79,6 +76,6 @@ public class HashIndex implements Index {
 
     @Override
     public ImmutableMap<Long, ProcessedDocument> exposeDocuments() {
-        return null;
+        return ImmutableMap.copyOf(this.indexedDocuments);
     }
 }

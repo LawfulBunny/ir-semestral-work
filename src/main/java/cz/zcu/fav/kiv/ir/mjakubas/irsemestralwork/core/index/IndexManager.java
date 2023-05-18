@@ -8,6 +8,7 @@ import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.Index;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.InvalidFieldIndex;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.QueryProcessor;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * Manages data-flow for specific index. Has the ability to perform query over the index.
  */
 @AllArgsConstructor
+@Getter
 public class IndexManager {
 
     private final DocumentProcessor documentProcessor;

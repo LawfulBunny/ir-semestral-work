@@ -34,7 +34,10 @@
                                 <MenuItem mnemonicParsing="false" onAction="#onMixModelClick" text="Oba"/>
                             </items>
                         </Menu>
-                        <Menu onAction="#onHelpClick" mnemonicParsing="false" text="Nápověda">
+                        <Menu mnemonicParsing="false" text="Nápověda">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#onHelpClick" text="Zobrazit nápovědu"/>
+                            </items>
                         </Menu>
                     </menus>
                 </MenuBar>
@@ -74,7 +77,8 @@
             <children>
                 <Label fx:id="queryStats" alignment="CENTER" maxWidth="1.7976931348623157E308"
                        text="Počet vrácených dotazů"/>
-                <Label fx:id="documentCount" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Počet zaindexovaných dokumentů"/>
+                <Label fx:id="documentCount" alignment="CENTER" maxWidth="1.7976931348623157E308"
+                       text="Počet zaindexovaných dokumentů"/>
             </children>
         </VBox>
     </bottom>
