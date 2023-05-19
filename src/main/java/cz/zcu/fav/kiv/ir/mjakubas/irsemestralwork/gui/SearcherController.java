@@ -121,6 +121,7 @@ public class SearcherController {
             alert.setTitle(GUIText.ALERT_ERROR_TITLE);
             alert.setHeaderText(GUIText.ALERT_QUERY_ERROR_HEADER);
             alert.setContentText(GUIText.ALERT_QUERY_ERROR_CONTENT);
+            alert.showAndWait();
             LOGGER.error(e);
         }
         long elapsedTime = (System.nanoTime() - startTime) / 1000000;

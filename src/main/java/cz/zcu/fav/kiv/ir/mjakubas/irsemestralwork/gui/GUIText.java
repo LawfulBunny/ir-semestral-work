@@ -17,6 +17,6 @@ public class GUIText {
     public static final String ALERT_DATA_ERROR_CONTENT = "Data se nepodařilo načíst";
     public static final String ALERT_INDEXATION_HEADER = "Indexace.";
     public static final String ALERT_INDEXATION_CONTENT = "Data úspěšně zaindexována";
-    public static final String ALERT_QUERY_ERROR_HEADER = "Indexace.";
-    public static final String ALERT_QUERY_ERROR_CONTENT = "Data úspěšně zaindexována";
+    public static final String ALERT_QUERY_ERROR_HEADER = "Chyba dotazu";
+    public static final String ALERT_QUERY_ERROR_CONTENT = "Chyba v dotazu";
 }

@@ -2,6 +2,7 @@ package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query;
 
 import com.google.common.collect.Iterators;
 import com.google.common.collect.PeekingIterator;
+import com.google.common.collect.Sets;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.Document;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.DocumentProcessor;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.Index;
@@ -19,7 +20,7 @@ public class MixedQueryProcessor extends QueryProcessor {
 
     @Override
     protected List<Long> getQueryRelatedDocuments(List<String> queryWords) {
-        return processExpression(tokens.iterator(), queryWords.iterator());
+        return Sets.newHashSet(processExpression(Iterators.peekingIterator(tokens.iterator()), queryWords.iterator())).stream().toList();
     }
 
     @Override
@@ -49,15 +50,16 @@ public class MixedQueryProcessor extends QueryProcessor {
     private static final String TOKEN_AND = "AND";
     private static final String TOKEN_OR = "OR";
 
-    private List<Long> processExpression(Iterator<String> remainingQuery, Iterator<String> remainingWords) {
+    private List<Long> processExpression(PeekingIterator<String> remainingQuery, Iterator<String> remainingWords) {
         return processOrExpression(remainingQuery, remainingWords);
     }
 
     /* ----- */
 
-    private List<Long> processOrExpression(Iterator<String> remainingQuery, Iterator<String> remainingWords) {
+    private List<Long> processOrExpression(PeekingIterator<String> remainingQuery, Iterator<String> remainingWords) {
         List<Long> orCollector = processAndExpression(remainingQuery, remainingWords);
-        while (remainingQuery.hasNext() && remainingQuery.next().equals(TOKEN_OR)) {
+        while (remainingQuery.hasNext() && remainingQuery.peek().equals(TOKEN_OR)) {
+            remainingQuery.next();
             orCollector.addAll(processOrExpression(remainingQuery, remainingWords));
         }
         return orCollector;
@@ -65,9 +67,10 @@ public class MixedQueryProcessor extends QueryProcessor {
 
     /* ----- */
 
-    private List<Long> processAndExpression(Iterator<String> remainingQuery, Iterator<String> remainingWords) {
+    private List<Long> processAndExpression(PeekingIterator<String> remainingQuery, Iterator<String> remainingWords) {
         List<Long> andCollector1 = processNotModifier(remainingQuery, remainingWords);
-        while (remainingQuery.hasNext() && remainingQuery.next().equals(TOKEN_AND)) {
+        while (remainingQuery.hasNext() && remainingQuery.peek().equals(TOKEN_AND)) {
+            remainingQuery.next();
             andCollector1.retainAll(processNotModifier(remainingQuery, remainingWords));
         }
         return andCollector1;
@@ -75,18 +78,17 @@ public class MixedQueryProcessor extends QueryProcessor {
 
     /* ----- */
 
-    private List<Long> processNotModifier(Iterator<String> remainingQuery, Iterator<String> remainingWords) {
+    private List<Long> processNotModifier(PeekingIterator<String> remainingQuery, Iterator<String> remainingWords) {
         boolean negate = false;
-        PeekingIterator<String> tokenOracle = Iterators.peekingIterator(remainingQuery);
-        if (tokenOracle.peek().equals(TOKEN_NOT)) {
+        if (remainingQuery.peek().equals(TOKEN_NOT)) {
             remainingQuery.next();
             negate = true;
         }
-
         List<Long> processed = processContentExpression(remainingQuery, remainingWords);
 
         if (negate) {
-            processed.removeAll(index.exposeDocuments().asMultimap().keys());
+            List<Long> a2 = index.exposeDocuments().asMultimap().keys().asList();
+            processed = Sets.difference(Sets.newHashSet(a2), Sets.newHashSet(processed)).stream().toList();
         }
 
         return processed;
@@ -94,9 +96,10 @@ public class MixedQueryProcessor extends QueryProcessor {
 
     /* ----- */
 
-    private List<Long> processContentExpression(Iterator<String> remainingQuery, Iterator<String> remainingWords) {
-        String token = remainingQuery.next();
+    private List<Long> processContentExpression(PeekingIterator<String> remainingQuery, Iterator<String> remainingWords) {
+        String token = remainingQuery.peek();
         if (token.equals(TOKEN_PARENTHESES_START)) {
+            remainingQuery.next();
             List<Long> result = processSubQuery(remainingQuery, remainingWords);
             remainingQuery.next(); // for /
             return result;
@@ -106,12 +109,12 @@ public class MixedQueryProcessor extends QueryProcessor {
 
     /* ----- */
 
-    private List<Long> processSubQuery(Iterator<String> remainingQuery, Iterator<String> remainingWords) {
+    private List<Long> processSubQuery(PeekingIterator<String> remainingQuery, Iterator<String> remainingWords) {
         return processExpression(remainingQuery, remainingWords);
     }
 
-    private List<Long> processSimpleTerm(Iterator<String> remainingQuery, Iterator<String> remainingWords) {
+    private List<Long> processSimpleTerm(PeekingIterator<String> remainingQuery, Iterator<String> remainingWords) {
         remainingQuery.next();
-        return index.exposeInvertedIndex().get(remainingWords.next()).stream().map(indexedDocument -> indexedDocument.getProcessedDocument().document().id()).toList();
+        return new ArrayList<>(index.exposeInvertedIndex().get(remainingWords.next()).stream().map(indexedDocument -> indexedDocument.getProcessedDocument().document().id()).toList());
     }
 }
