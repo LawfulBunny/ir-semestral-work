@@ -7,10 +7,7 @@ import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueriedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.DocumentProcessor;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.Index;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MixedQueryProcessor extends QueryProcessor {
     public MixedQueryProcessor(Index index) {

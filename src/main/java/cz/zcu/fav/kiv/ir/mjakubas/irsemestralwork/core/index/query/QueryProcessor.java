@@ -57,13 +57,14 @@ public abstract class QueryProcessor {
     protected Map<String, Double> createQueryVector(List<String> queryWords) {
         double[] vector = new double[index.exposeInvertedIndex().size()];
         int i = 0;
-        for (String term : queryWords) {
+        Set<String> cleanUp = new HashSet<>(queryWords);
+        for (String term : cleanUp) {
             vector[i++] = 1;
         }
         Vector.normalize(vector);
         i = 0;
         Map<String, Double> result = new HashMap<>();
-        for (String term : queryWords) {
+        for (String term : cleanUp) {
             result.put(term, vector[i++]);
         }
         return result;
