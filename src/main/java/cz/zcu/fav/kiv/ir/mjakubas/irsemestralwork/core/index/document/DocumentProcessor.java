@@ -12,11 +12,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * For processing documents.
+ */
 @AllArgsConstructor
 public class DocumentProcessor {
 
     private final Preprocessing basicPreprocessing;
 
+    /**
+     * Processes given list of documents.
+     *
+     * @param documents documents.
+     * @return list of processed documents
+     */
     public List<ProcessedDocument> processDocuments(List<Document> documents) {
         List<ProcessedDocument> processedDocuments = new ArrayList<>();
 
@@ -27,6 +36,12 @@ public class DocumentProcessor {
         return processedDocuments;
     }
 
+    /**
+     * Processes given document.
+     *
+     * @param document document.
+     * @return Processed documents
+     */
     public ProcessedDocument processDocument(Document document) {
         List<String> processedTitle = basicPreprocessing.preprocess(document.title());
         List<String> processedText = basicPreprocessing.preprocess(document.text());

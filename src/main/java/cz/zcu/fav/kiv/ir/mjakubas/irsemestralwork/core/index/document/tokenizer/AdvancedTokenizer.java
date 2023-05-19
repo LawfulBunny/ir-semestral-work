@@ -8,11 +8,21 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Based of task 2 preprocessing.
+ */
 public class AdvancedTokenizer implements Tokenizer {
 
     //cislo |  | html | tecky a ostatni
     public static final String defaultRegex = "(\\d+[.,](\\d+)?)|([\\p{L}\\d]+)|(<.*?>)|([\\p{Punct}])";
 
+    /**
+     * Tokenizes the given text.
+     *
+     * @param text  Text.
+     * @param regex Regex.
+     * @return Tokenized text.
+     */
     public static String[] tokenize(String text, String regex) {
         text = removeAccents(text);
 
@@ -89,6 +99,6 @@ public class AdvancedTokenizer implements Tokenizer {
 
     @Override
     public String[] tokenize(String text) {
-        return tokenize(text, defaultRegex);
+        return tokenize(removeHtmlTags(text), defaultRegex);
     }
 }
