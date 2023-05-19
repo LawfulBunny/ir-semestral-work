@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed8e5eea-399a-4ae7-b517-f1ec718d28b5" name="Changes" comment="Eh...">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/cz.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/index/HashIndex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/index/HashIndex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/SearcherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/gui/SearcherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/document/BasicPreprocessing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/document/BasicPreprocessing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/document/tokenizer/AdvancedTokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/document/tokenizer/AdvancedTokenizer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +50,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Lawful Bunny/School/IRSemestralWork/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/crawler",
+    "last_opened_file_path": "C:/Users/Lawful Bunny/School/IRSemestralWork/src/main/resources/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -63,9 +64,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lawful Bunny\School\IRSemestralWork\src\main\resources\cz\zcu\fav\kiv\ir\mjakubas\irsemestralwork" />
       <recent name="C:\Users\Lawful Bunny\School\IRSemestralWork\src\main\java\cz\zcu\fav\kiv\ir\mjakubas\irsemestralwork\crawler" />
       <recent name="C:\Users\Lawful Bunny\School\IRSemestralWork\src\main\java\cz\zcu\fav\kiv\ir\mjakubas\irsemestralwork\core\index" />
-      <recent name="C:\Users\Lawful Bunny\School\IRSemestralWork\src\main\resources\cz\zcu\fav\kiv\ir\mjakubas\irsemestralwork" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Lawful Bunny\School\IRSemestralWork\src\main\resources\cz\zcu\fav\kiv\ir\mjakubas\irsemestralwork" />
@@ -128,7 +129,7 @@
       <workItem from="1684347977053" duration="1593000" />
       <workItem from="1684349579128" duration="27882000" />
       <workItem from="1684502653174" duration="302000" />
-      <workItem from="1684502960365" duration="16479000" />
+      <workItem from="1684502960365" duration="17629000" />
     </task>
     <task id="LOCAL-00001" summary="Eh...">
       <created>1684344527988</created>
@@ -396,7 +397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684521250296</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Eh...">
+      <created>1684522525740</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1684522525740</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -413,11 +421,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/index/HashIndex.java</url>
           <line>26</line>
           <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/index/HashIndex.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

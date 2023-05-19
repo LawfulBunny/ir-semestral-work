@@ -1,10 +1,19 @@
 package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.tokenizer;
 
+import com.google.common.collect.Sets;
+import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.SearcherApplication;
 import org.jsoup.Jsoup;
 import us.codecraft.xsoup.Xsoup;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
