@@ -5,7 +5,6 @@ import com.google.common.collect.ImmutableMap;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.Document;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.ProcessedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.ProcessedField;
-import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,10 +14,13 @@ import java.util.Map;
 /**
  * For processing documents.
  */
-@AllArgsConstructor
 public class DocumentProcessor {
 
     private final Preprocessing basicPreprocessing;
+
+    public DocumentProcessor(Preprocessing basicPreprocessing) {
+        this.basicPreprocessing = basicPreprocessing;
+    }
 
     /**
      * Processes given list of documents.

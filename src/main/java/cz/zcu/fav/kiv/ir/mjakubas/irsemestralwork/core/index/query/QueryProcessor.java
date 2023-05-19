@@ -8,7 +8,6 @@ import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.DocumentPr
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.Index;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.IndexedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.utils.Vector;
-import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,12 +16,15 @@ import java.util.*;
 /**
  * Used to perform query over a given index.
  */
-@AllArgsConstructor
 public abstract class QueryProcessor {
 
     private static final Logger LOGGER = LogManager.getLogger(QueryProcessor.class);
 
     protected final Index index;
+
+    public QueryProcessor(Index index) {
+        this.index = index;
+    }
 
     /**
      * Performs query of text over objects index. Returns up to nHit results.

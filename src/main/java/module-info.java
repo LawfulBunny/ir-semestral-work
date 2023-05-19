@@ -5,7 +5,6 @@ module cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork {
     requires org.apache.logging.log4j.core;
     requires com.google.gson;
     requires com.google.common;
-    requires static lombok;
     requires org.jsoup;
     requires xsoup;
     requires java.desktop;

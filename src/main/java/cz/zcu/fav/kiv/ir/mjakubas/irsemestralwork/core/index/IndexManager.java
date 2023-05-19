@@ -7,20 +7,21 @@ import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.DocumentPr
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.Index;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.InvalidFieldIndex;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.QueryProcessor;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 import java.util.List;
 
 /**
  * Manages data-flow for specific index. Has the ability to perform query over the index.
  */
-@AllArgsConstructor
-@Getter
 public class IndexManager {
 
     private final DocumentProcessor documentProcessor;
     private final Index index;
+
+    public IndexManager(DocumentProcessor documentProcessor, Index index) {
+        this.documentProcessor = documentProcessor;
+        this.index = index;
+    }
 
     /**
      * Indexes documents into index.
@@ -40,5 +41,13 @@ public class IndexManager {
 
     public int getIndexedDocumentCount() {
         return index.exposeDocuments().size();
+    }
+
+    public DocumentProcessor getDocumentProcessor() {
+        return documentProcessor;
+    }
+
+    public Index getIndex() {
+        return index;
     }
 }
