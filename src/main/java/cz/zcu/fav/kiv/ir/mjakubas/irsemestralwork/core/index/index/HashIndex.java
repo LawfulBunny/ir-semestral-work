@@ -1,6 +1,5 @@
 package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.ProcessedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.ProcessedField;
@@ -17,9 +16,8 @@ public class HashIndex implements Index {
 
     private static final Logger LOGGER = LogManager.getLogger(HashIndex.class);
 
-    private final Map<String, List<IndexedDocument>> invertedIndex = new HashMap<>();
+    private final Map<String, SortedMap<Long, IndexedDocument>> invertedIndex = new HashMap<>();
     private final Map<Long, ProcessedDocument> indexedDocuments = new HashMap<>();
-
     private ImmutableMap<String, List<IndexedDocument>> cacheIndex;
     private ImmutableMap<Long, ProcessedDocument> cacheDocuments;
 
@@ -31,7 +29,12 @@ public class HashIndex implements Index {
         this.populateWithRawEntries(documents, ofField);
         LOGGER.trace("processing inverted index entries...");
         this.processRawEntries(ofField);
-        cacheIndex = ImmutableMap.copyOf(this.invertedIndex);
+        var indexVal = invertedIndex.keySet();
+        HashMap<String, List<IndexedDocument>> cpy = new HashMap<>();
+        for (String key : indexVal) {
+            cpy.put(key, invertedIndex.get(key).values().stream().toList());
+        }
+        cacheIndex = ImmutableMap.copyOf(cpy);
         cacheDocuments = ImmutableMap.copyOf(this.indexedDocuments);
     }
 
@@ -47,8 +50,8 @@ public class HashIndex implements Index {
                         "Skipping populating inverted index for said document.", document.document().id(), ofField));
             } else {
                 for (String word : field.words()) {
-                    this.invertedIndex.putIfAbsent(word, new ArrayList<>());
-                    this.invertedIndex.get(word).add(new IndexedDocument(0, document));
+                    this.invertedIndex.putIfAbsent(word, new TreeMap<>());
+                    this.invertedIndex.get(word).put(document.document().id(), new IndexedDocument(0, document));
                 }
             }
         });
@@ -58,10 +61,10 @@ public class HashIndex implements Index {
         int documentsCount = indexedDocuments.size();
         this.invertedIndex.forEach((word, hashEntry) -> {
             /* sort the list */
-            hashEntry.sort(Comparator.comparingLong(of -> of.getProcessedDocument().document().id()));
+            //hashEntry.sort(Comparator.comparingLong(of -> of.getProcessedDocument().document().id()));
             /* calculate tf-idf */
             double idf = Math.log((double) documentsCount / hashEntry.size());
-            hashEntry.forEach(document -> {
+            hashEntry.values().forEach(document -> {
                 //noinspection DataFlowIssue : cant happen due to initial check
                 int tf = document.getProcessedDocument().processedFields().get(ofField).wordFrequencies()
                         .getOrDefault(word, 0);
@@ -93,7 +96,7 @@ public class HashIndex implements Index {
 
         documentsIds.parallelStream().forEach(id -> {
             double[] vector = new double[this.invertedIndex.size()];
-            var ks = this.invertedIndex.entrySet();
+            var ks = exposeInvertedIndex().entrySet();
             int i = 0;
             for (var term : ks) {
                 vector[i++] = getDocumentValue(term.getKey(), id);
@@ -114,13 +117,7 @@ public class HashIndex implements Index {
      * @return index tf-idf value
      */
     private double getDocumentValue(String term, long docId) {
-        List<IndexedDocument> iDocuments = invertedIndex.get(term);
-        for (IndexedDocument iDoc : iDocuments) {
-            if (iDoc.getProcessedDocument().document().id() == docId)
-                return iDoc.getTfidf();
-        }
-
-        return 0;
+        return invertedIndex.get(term).getOrDefault(docId, new IndexedDocument(0, null)).getTfidf();
     }
 
     /**
@@ -131,11 +128,7 @@ public class HashIndex implements Index {
      * @param value new tf-idf value
      */
     private void setDocumentValue(String term, long docId, double value) {
-        List<IndexedDocument> iDocuments = invertedIndex.get(term);
-        for (IndexedDocument iDoc : iDocuments) {
-            if (iDoc.getProcessedDocument().document().id() == docId)
-                iDoc.setTfidf(value);
-        }
+        invertedIndex.get(term).getOrDefault(docId, new IndexedDocument(0, null)).setTfidf(value);
     }
 }
 

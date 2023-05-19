@@ -123,6 +123,7 @@ public class SearcherController {
             alert.setContentText(GUIText.ALERT_QUERY_ERROR_CONTENT);
             alert.showAndWait();
             LOGGER.error(e);
+            throw new RuntimeException(e);
         }
         long elapsedTime = (System.nanoTime() - startTime) / 1000000;
         LOGGER.info("Elapsed time: {} ms", elapsedTime);
