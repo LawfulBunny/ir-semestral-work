@@ -109,7 +109,7 @@ public class SearcherController {
         String query = queryField.getText();
         LOGGER.info("Query accepted for '{}'", query);
         QueryProcessor queryProcessor = queryProcessorText;
-        if (searchOfField.getValue().equals("Title")) {
+        if (searchOfField.getValue().equals("Titulek")) {
             queryProcessor = queryProcessorTitle;
         }
         QueryResult result = new QueryResult(ImmutableList.of());
@@ -126,6 +126,7 @@ public class SearcherController {
         long elapsedTime = (System.nanoTime() - startTime) / 1000000;
         LOGGER.info("Elapsed time: {} ms", elapsedTime);
         queryStats.setText(String.format("Dotaz zabral: " + elapsedTime + " ms"));
+        resultList.getItems().clear();
         result.result().forEach(queriedDocument -> {
             resultList.getItems().add(queriedDocument);
         });

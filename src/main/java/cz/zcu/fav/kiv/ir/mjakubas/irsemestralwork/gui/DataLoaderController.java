@@ -4,7 +4,6 @@ import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.SearcherApplication;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.Document;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueriedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.MixedQueryProcessor;
-import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.io.DocumentLoader;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui.io.DataLoader;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui.storage.PreparedIndexStorage;
 import javafx.event.ActionEvent;
@@ -13,17 +12,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.HBox;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import java.io.File;
+import java.awt.Desktop;
+
 import java.io.IOException;
-import java.nio.file.Path;
+import java.net.URISyntaxException;
 import java.util.List;
 
 /**
@@ -66,14 +64,19 @@ public class DataLoaderController {
                 super.updateItem(item, empty);
                 if (item != null) {
                     HBox hbox = new HBox(10);
-                    Button button = new Button("Click");
+                    Button button = new Button("Zobrazit v prohlížeči");
                     button.setOnAction(event -> {
-                        System.out.println("Button clicked for item: " + item);
+                        Desktop desktop = Desktop.getDesktop();
+                        try {
+                            desktop.browse(item.document().url().toURI());
+                        } catch (IOException | URISyntaxException e) {
+                            throw new RuntimeException(e);
+                        }
                     });
                     hbox.getChildren().addAll(
                             // Customize the text and button as needed
-                            new javafx.scene.text.Text("asda" + item.relevance()),
-                            button
+                            button,
+                            new javafx.scene.text.Text(item.toString())
                     );
                     setGraphic(hbox);
                 } else {

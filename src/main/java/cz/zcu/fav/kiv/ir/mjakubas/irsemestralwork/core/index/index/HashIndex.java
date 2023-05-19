@@ -81,4 +81,30 @@ public class HashIndex implements Index {
     public ImmutableMap<Long, ProcessedDocument> exposeDocuments() {
         return cacheDocuments;
     }
+
+//    /**
+//     * For each document normalizes its term vector.
+//     *
+//     * @param documents documents
+//     */
+//    private void normalizeEntries(List<Document> documents) {
+//        int normalized = 0;
+//        for (Document document : documents) {
+//            int docID = document.getId();
+//            double[] vector = new double[this.hashList.size()];
+//            int i = 0;
+//            var ks = this.hashList.keySet();
+//            for (String term : ks) {
+//                vector[i++] = getDocumentValue(term, docID);
+//            }
+//            Vector.normalize(vector);
+//            i = 0;
+//            for (String term : ks) {
+//                setDocumentValue(term, docID, vector[i++]);
+//            }
+//
+//            //System.out.printf("%s/%s \n", normalized, documents.size());
+//            normalized++;
+//        }
+//    }
 }

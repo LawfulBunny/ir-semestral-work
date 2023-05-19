@@ -3,11 +3,12 @@ package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.PeekingIterator;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.Document;
-import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueriedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.DocumentProcessor;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.Index;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class MixedQueryProcessor extends QueryProcessor {
     public MixedQueryProcessor(Index index) {
@@ -96,7 +97,9 @@ public class MixedQueryProcessor extends QueryProcessor {
     private List<Long> processContentExpression(Iterator<String> remainingQuery, Iterator<String> remainingWords) {
         String token = remainingQuery.next();
         if (token.equals(TOKEN_PARENTHESES_START)) {
-            return processSubQuery(remainingQuery, remainingWords);
+            List<Long> result = processSubQuery(remainingQuery, remainingWords);
+            remainingQuery.next(); // for /
+            return result;
         }
         return processSimpleTerm(remainingQuery, remainingWords);
     }

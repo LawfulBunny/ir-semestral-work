@@ -6,6 +6,9 @@ import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.IndexedDocume
 
 import java.util.*;
 
+/**
+ * Basic query processor. Uses tfidf.
+ */
 public class VectorQueryProcessor extends QueryProcessor {
 
     public VectorQueryProcessor(Index index) {

@@ -2,6 +2,11 @@ package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.utils;
 
 public class Vector {
 
+    /**
+     * Normalizes given vector.
+     *
+     * @param a vector
+     */
     public static void normalize(double[] a) {
         double scale = 0;
 

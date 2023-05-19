@@ -7,4 +7,9 @@ package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data;
  * @param document  Document.
  */
 public record QueriedDocument(double relevance, Document document) {
+
+    @Override
+    public String toString() {
+        return String.format("rank:[%s] URL: %s", relevance, document.url());
+    }
 }

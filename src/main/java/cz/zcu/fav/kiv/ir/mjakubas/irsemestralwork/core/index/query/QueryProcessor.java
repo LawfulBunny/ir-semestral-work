@@ -6,6 +6,7 @@ import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueriedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueryResult;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.DocumentProcessor;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.Index;
+import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index.IndexedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.utils.Vector;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.LogManager;
@@ -31,6 +32,10 @@ public abstract class QueryProcessor {
      * @return Queried documents up to nHit results.
      */
     public QueryResult performQuery(String text, int nHit, DocumentProcessor documentProcessor) {
+        if (text.equals("")) {
+            return new QueryResult(ImmutableList.of());
+        }
+
         LOGGER.trace("Performing query for '{}'. Max results: {}", text, nHit);
         /* get all unique query terms */
         List<String> queryWords = getQueryTerms(text, documentProcessor);
@@ -43,17 +48,29 @@ public abstract class QueryProcessor {
         LOGGER.trace("Document ids '{}'", documentIds);
         /* perform search based on query */
         List<QueriedDocument> returnedDocuments = performSearch(queryWords, queryVector, documentIds);
-        LOGGER.trace("Query returned documents: {}",
-                returnedDocuments.stream().map(queriedDocument -> queriedDocument.document().id()));
+        returnedDocuments.sort(Comparator.comparingDouble(QueriedDocument::relevance).reversed());
+        returnedDocuments = returnedDocuments.subList(0, Math.min(returnedDocuments.size(), nHit + 1));
         return new QueryResult(ImmutableList.copyOf(returnedDocuments));
     }
 
+    /**
+     * Gets query terms from the query.
+     *
+     * @param text              Text.
+     * @param documentProcessor Document processor.
+     * @return Query words.
+     */
     protected List<String> getQueryTerms(String text, DocumentProcessor documentProcessor) {
         Document queryAsDocument = new Document(-1, null, text, text);
-
         return documentProcessor.processDocument(queryAsDocument).processedFields().get(0).wordFrequencies().keySet().stream().toList();
     }
 
+    /**
+     * Creates query vector for the query.
+     *
+     * @param queryWords query words.
+     * @return query vector.
+     */
     protected Map<String, Double> createQueryVector(List<String> queryWords) {
         double[] vector = new double[index.exposeInvertedIndex().size()];
         int i = 0;
@@ -70,6 +87,14 @@ public abstract class QueryProcessor {
         return result;
     }
 
+    /**
+     * The actual query.
+     *
+     * @param queryWords  Query words.
+     * @param queryVector Query vector.
+     * @param documentIds Relevant documents.
+     * @return Query result.
+     */
     protected List<QueriedDocument> performSearch(List<String> queryWords, Map<String, Double> queryVector, List<Long> documentIds) {
         // calculate rank for each document
         List<QueriedDocument> queriedDocuments = new ArrayList<>();
@@ -77,7 +102,7 @@ public abstract class QueryProcessor {
             double rank = 0;
             // cycle through each query term
             for (String term : queryWords) {
-                double dv = 0; //getDocumentValue(term, id);
+                double dv = getDocumentValue(term, id);
                 double qv = queryVector.get(term);
                 rank += dv * qv;
             }
@@ -87,5 +112,28 @@ public abstract class QueryProcessor {
         return queriedDocuments;
     }
 
+    /**
+     * Returns a document tf-idf by the indexed term if it exists.
+     *
+     * @param term  index term
+     * @param docId document id
+     * @return index tf-idf value
+     */
+    private double getDocumentValue(String term, long docId) {
+        List<IndexedDocument> iDocuments = this.index.exposeInvertedIndex().getOrDefault(term, new ArrayList<>()); // fuck null
+        for (IndexedDocument iDoc : iDocuments) {
+            if (iDoc.getProcessedDocument().document().id() == docId)
+                return iDoc.getTfidf();
+        }
+
+        return 0;
+    }
+
+    /**
+     * Get documents.
+     *
+     * @param queryWords Query words.
+     * @return Relevant documents
+     */
     protected abstract List<Long> getQueryRelatedDocuments(List<String> queryWords);
 }
