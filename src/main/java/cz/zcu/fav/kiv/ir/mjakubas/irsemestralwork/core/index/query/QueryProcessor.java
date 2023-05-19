@@ -45,6 +45,7 @@ public abstract class QueryProcessor {
         LOGGER.trace("Query vector '{}'", queryVector);
         /* get query-related documents */
         List<Long> documentIds = getQueryRelatedDocuments(queryWords);
+        index.normalizeEntries(documentIds);
         LOGGER.trace("Document ids '{}'", documentIds);
         /* perform search based on query */
         List<QueriedDocument> returnedDocuments = performSearch(queryWords, queryVector, documentIds);

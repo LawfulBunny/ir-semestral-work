@@ -9,7 +9,6 @@ import java.util.List;
  * Defines an index interface. Index should allow data indexation,
  * as well as retrieval of its indexed data structure.
  * Indexed data can be changed only through indexation methods.
- *
  */
 public interface Index {
 
@@ -34,4 +33,11 @@ public interface Index {
      * @return Indexed documents.
      */
     public ImmutableMap<Long, ProcessedDocument> exposeDocuments();
+
+    /**
+     * For each document normalizes its term vector.
+     *
+     * @param documentsIds DocumentIds.
+     */
+    public void normalizeEntries(List<Long> documentsIds);
 }

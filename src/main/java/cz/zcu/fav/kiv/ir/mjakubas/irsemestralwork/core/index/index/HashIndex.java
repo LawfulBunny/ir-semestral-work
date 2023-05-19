@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.ProcessedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.ProcessedField;
+import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.utils.Vector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -82,29 +83,59 @@ public class HashIndex implements Index {
         return cacheDocuments;
     }
 
-//    /**
-//     * For each document normalizes its term vector.
-//     *
-//     * @param documents documents
-//     */
-//    private void normalizeEntries(List<Document> documents) {
-//        int normalized = 0;
-//        for (Document document : documents) {
-//            int docID = document.getId();
-//            double[] vector = new double[this.hashList.size()];
-//            int i = 0;
-//            var ks = this.hashList.keySet();
-//            for (String term : ks) {
-//                vector[i++] = getDocumentValue(term, docID);
-//            }
-//            Vector.normalize(vector);
-//            i = 0;
-//            for (String term : ks) {
-//                setDocumentValue(term, docID, vector[i++]);
-//            }
-//
-//            //System.out.printf("%s/%s \n", normalized, documents.size());
-//            normalized++;
-//        }
-//    }
+    /**
+     * For each document normalizes its term vector.
+     *
+     * @param documentsIds DocumentIds.
+     */
+    public void normalizeEntries(List<Long> documentsIds) {
+        int normalized = 0;
+
+        documentsIds.parallelStream().forEach(id -> {
+            double[] vector = new double[this.invertedIndex.size()];
+            var ks = this.invertedIndex.entrySet();
+            int i = 0;
+            for (var term : ks) {
+                vector[i++] = getDocumentValue(term.getKey(), id);
+            }
+            Vector.normalize(vector);
+            i = 0;
+            for (var term : ks) {
+                setDocumentValue(term.getKey(), id, vector[i++]);
+            }
+        });
+    }
+
+    /**
+     * Returns a document tf-idf by the indexed term if it exists.
+     *
+     * @param term  index term
+     * @param docId document id
+     * @return index tf-idf value
+     */
+    private double getDocumentValue(String term, long docId) {
+        List<IndexedDocument> iDocuments = invertedIndex.get(term);
+        for (IndexedDocument iDoc : iDocuments) {
+            if (iDoc.getProcessedDocument().document().id() == docId)
+                return iDoc.getTfidf();
+        }
+
+        return 0;
+    }
+
+    /**
+     * Sets indexed term document tf-idf value.
+     *
+     * @param term  index term
+     * @param docId document id
+     * @param value new tf-idf value
+     */
+    private void setDocumentValue(String term, long docId, double value) {
+        List<IndexedDocument> iDocuments = invertedIndex.get(term);
+        for (IndexedDocument iDoc : iDocuments) {
+            if (iDoc.getProcessedDocument().document().id() == docId)
+                iDoc.setTfidf(value);
+        }
+    }
 }
+
