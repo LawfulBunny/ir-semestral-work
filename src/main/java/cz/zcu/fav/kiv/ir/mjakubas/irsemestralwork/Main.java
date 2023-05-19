@@ -27,6 +27,6 @@ public class Main {
 
         indexManager.indexDocuments(Arrays.stream(documents).toList(), 0);
 
-        queryProcessor.performQuery("w1 AND (w2 OR w3)", 1, indexManager.getDocumentProcessor());
+        queryProcessor.performQuery("w1 AND (w2 OR NOT w3)", 1, indexManager.getDocumentProcessor());
     }
 }

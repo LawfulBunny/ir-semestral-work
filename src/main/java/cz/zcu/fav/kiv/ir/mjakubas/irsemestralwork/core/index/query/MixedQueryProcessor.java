@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * TF-IDF with boolean expressions.
+ */
 public class MixedQueryProcessor extends QueryProcessor {
     public MixedQueryProcessor(Index index) {
         super(index);
@@ -43,6 +46,9 @@ public class MixedQueryProcessor extends QueryProcessor {
     }
 
     /* CUSTOM SEARCH IMPLEMENTATION */
+    /* recursive descend basically */
+    /* only using guava for set operations */
+    /* each step returns relevant documents that passed the previous expression */
 
     private static final String TOKEN_PARENTHESES_START = "(";
     private static final String TOKEN_PARENTHESES_END = ")";

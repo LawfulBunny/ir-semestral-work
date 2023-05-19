@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Boolean query returns all documents that pass the query.
+ */
 public class BooleanQueryProcessor extends MixedQueryProcessor {
     public BooleanQueryProcessor(Index index) {
         super(index);
