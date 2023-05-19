@@ -81,7 +81,7 @@ public abstract class QueryProcessor {
                 double qv = queryVector.get(term);
                 rank += dv * qv;
             }
-            queriedDocuments.add(new QueriedDocument(-1, rank, index.exposeDocuments().get(id).document()));
+            queriedDocuments.add(new QueriedDocument(rank, index.exposeDocuments().get(id).document()));
         }
 
         return queriedDocuments;

@@ -16,7 +16,7 @@ public class BooleanQueryProcessor extends MixedQueryProcessor {
     protected List<QueriedDocument> performSearch(List<String> queryWords, Map<String, Double> queryVector, List<Long> documentIds) {
         List<QueriedDocument> result = new ArrayList<>();
         documentIds.forEach(aLong -> {
-            result.add(new QueriedDocument(1, 1, index.exposeDocuments().get(aLong).document()));
+            result.add(new QueriedDocument(1, index.exposeDocuments().get(aLong).document()));
         });
         return result;
     }
