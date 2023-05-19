@@ -1,5 +1,6 @@
 package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.gui;
 
+import com.google.common.collect.ImmutableList;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.SearcherApplication;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.Document;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.QueriedDocument;
@@ -25,11 +26,10 @@ import java.io.IOException;
 import java.util.List;
 
 public class SearcherController {
-
     private static final Logger LOGGER = LogManager.getLogger(SearcherController.class);
     public IndexStorage indexStorage;
-    private QueryProcessor queryProcessorTitle;
-    private QueryProcessor queryProcessorText;
+    public QueryProcessor queryProcessorTitle;
+    public QueryProcessor queryProcessorText;
 
     /**
      * Inserts new data into existing indexes.
@@ -50,12 +50,15 @@ public class SearcherController {
     }
 
     private void showIndexationExceptionAlert() {
-        Alert dataExceptionAlert = new Alert(Alert.AlertType.ERROR);
-        dataExceptionAlert.show();
+        //not necessary
     }
 
     private void showIndexationSuccessAlert() {
-
+        Alert dataAlert = new Alert(Alert.AlertType.INFORMATION);
+        dataAlert.setTitle(GUIText.ALERT_INFO_TITLE);
+        dataAlert.setHeaderText(GUIText.ALERT_INDEXATION_HEADER);
+        dataAlert.setContentText(GUIText.ALERT_INDEXATION_CONTENT);
+        dataAlert.showAndWait();
     }
 
     private void showQueryModelChangeAlert() {
@@ -67,7 +70,9 @@ public class SearcherController {
     }
 
     @FXML
-    private ListView<QueriedDocument> resultList;
+    public ListView<QueriedDocument> resultList;
+
+    public static final int DEFAULT_HIT_VALUE = 10;
     @FXML
     public TextField hitField;
     @FXML
@@ -107,7 +112,20 @@ public class SearcherController {
         if (searchOfField.getValue().equals("Title")) {
             queryProcessor = queryProcessorTitle;
         }
-        QueryResult result = queryProcessor.performQuery(query, Integer.parseInt(hitField.getText()), indexStorage.textManager().getDocumentProcessor());
+        QueryResult result = new QueryResult(ImmutableList.of());
+        long startTime = System.nanoTime();
+        try {
+            result = queryProcessor.performQuery(query, Integer.parseInt(hitField.getText()), indexStorage.textManager().getDocumentProcessor());
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(GUIText.ALERT_ERROR_TITLE);
+            alert.setHeaderText(GUIText.ALERT_QUERY_ERROR_HEADER);
+            alert.setContentText(GUIText.ALERT_QUERY_ERROR_CONTENT);
+            LOGGER.error(e);
+        }
+        long elapsedTime = (System.nanoTime() - startTime) / 1000000;
+        LOGGER.info("Elapsed time: {} ms", elapsedTime);
+        queryStats.setText(String.format("Dotaz zabral: " + elapsedTime + " ms"));
         result.result().forEach(queriedDocument -> {
             resultList.getItems().add(queriedDocument);
         });

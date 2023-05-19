@@ -15,7 +15,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 /**
- *
+ * Manages document loading.
  */
 public class DataLoader {
     private static final Logger LOGGER = LogManager.getLogger(DataLoader.class);
@@ -78,12 +78,15 @@ public class DataLoader {
         noDataAlert.setHeaderText(GUIText.ALERT_NO_DATA_HEADER);
         noDataAlert.setContentText(GUIText.ALERT_NO_DATA_CONTENT);
 
-        noDataAlert.show();
+        noDataAlert.showAndWait();
     }
 
     private static void showDataExceptionAlert() {
         Alert dataExceptionAlert = new Alert(Alert.AlertType.ERROR);
+        dataExceptionAlert.setTitle(GUIText.ALERT_ERROR_TITLE);
+        dataExceptionAlert.setHeaderText(GUIText.ALERT_DATA_ERROR_HEADER);
+        dataExceptionAlert.setContentText(GUIText.ALERT_DATA_ERROR_CONTENT);
 
-        dataExceptionAlert.show();
+        dataExceptionAlert.showAndWait();
     }
 }
