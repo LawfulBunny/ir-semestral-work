@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ed8e5eea-399a-4ae7-b517-f1ec718d28b5" name="Changes" comment="Eh...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/document/DocumentProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/document/DocumentProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/document/tokenizer/AdvancedTokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/document/tokenizer/AdvancedTokenizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/index/HashIndex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/zcu/fav/kiv/ir/mjakubas/irsemestralwork/core/index/index/HashIndex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +128,7 @@
       <workItem from="1684347977053" duration="1593000" />
       <workItem from="1684349579128" duration="27882000" />
       <workItem from="1684502653174" duration="302000" />
-      <workItem from="1684502960365" duration="5706000" />
+      <workItem from="1684502960365" duration="6507000" />
     </task>
     <task id="LOCAL-00001" summary="Eh...">
       <created>1684344527988</created>
@@ -354,7 +354,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684509120659</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Eh...">
+      <created>1684510109303</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1684510109303</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

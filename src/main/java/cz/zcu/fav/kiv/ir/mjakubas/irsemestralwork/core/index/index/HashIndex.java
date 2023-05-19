@@ -1,5 +1,6 @@
 package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.ProcessedDocument;
 import cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data.ProcessedField;
@@ -16,8 +17,10 @@ public class HashIndex implements Index {
     private static final Logger LOGGER = LogManager.getLogger(HashIndex.class);
 
     private final Map<String, List<IndexedDocument>> invertedIndex = new HashMap<>();
-
     private final Map<Long, ProcessedDocument> indexedDocuments = new HashMap<>();
+
+    private ImmutableMap<String, List<IndexedDocument>> cacheIndex;
+    private ImmutableMap<Long, ProcessedDocument> cacheDocuments;
 
     @Override
     public void indexDocuments(List<ProcessedDocument> documents, int ofField) {
@@ -27,6 +30,8 @@ public class HashIndex implements Index {
         this.populateWithRawEntries(documents, ofField);
         LOGGER.trace("processing inverted index entries...");
         this.processRawEntries(ofField);
+        cacheIndex = ImmutableMap.copyOf(this.invertedIndex);
+        cacheDocuments = ImmutableMap.copyOf(this.indexedDocuments);
     }
 
     private void storeDocuments(List<ProcessedDocument> documents) {
@@ -69,12 +74,11 @@ public class HashIndex implements Index {
 
     @Override
     public ImmutableMap<String, List<IndexedDocument>> exposeInvertedIndex() {
-        return ImmutableMap.copyOf(this.invertedIndex);
+        return cacheIndex;
     }
-
 
     @Override
     public ImmutableMap<Long, ProcessedDocument> exposeDocuments() {
-        return ImmutableMap.copyOf(this.indexedDocuments);
+        return cacheDocuments;
     }
 }
