@@ -6,6 +6,8 @@ module cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork {
     requires com.google.gson;
     requires com.google.common;
     requires static lombok;
+    requires org.jsoup;
+    requires xsoup;
 
     opens cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork to javafx.fxml, com.google.gson;
     opens cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.data to com.google.gson;
@@ -23,4 +25,6 @@ module cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork {
     exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.index;
     exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query;
     exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.query.utils;
+    exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.tokenizer;
+    exports cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.stemmer;
 }

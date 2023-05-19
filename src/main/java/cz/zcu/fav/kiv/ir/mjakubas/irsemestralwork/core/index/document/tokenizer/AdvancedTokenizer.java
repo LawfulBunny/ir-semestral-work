@@ -1,5 +1,8 @@
 package cz.zcu.fav.kiv.ir.mjakubas.irsemestralwork.core.index.document.tokenizer;
 
+import org.jsoup.Jsoup;
+import us.codecraft.xsoup.Xsoup;
+
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -78,6 +81,10 @@ public class AdvancedTokenizer implements Tokenizer {
 
     public static String removeAccents(String text) {
         return text == null ? null : Normalizer.normalize(text, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+    }
+
+    public static String removeHtmlTags(String text) {
+        return Jsoup.parse(text).text();
     }
 
     @Override
